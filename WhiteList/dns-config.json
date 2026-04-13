@@ -12,11 +12,6 @@
         "detour": "direct"
       },
       {
-        "tag": "direct-dns-yandex",
-        "address": "udp://dns.yandex.net",
-        "detour": "direct"
-      },
-      {
         "tag": "proxy-dns",
         "address": "https://cloudflare-dns.com/dns-query",
         "detour": "proxy"
