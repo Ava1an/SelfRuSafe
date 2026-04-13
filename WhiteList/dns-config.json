@@ -1,0 +1,72 @@
+{
+  "dns": {
+    "servers": [
+      {
+        "tag": "direct-dns",
+        "address": "udp://77.88.8.8",
+        "detour": "direct"
+      },
+      {
+        "tag": "direct-dns-backup",
+        "address": "udp://77.88.8.1",
+        "detour": "direct"
+      },
+      {
+        "tag": "direct-dns-yandex",
+        "address": "udp://dns.yandex.net",
+        "detour": "direct"
+      },
+      {
+        "tag": "proxy-dns",
+        "address": "https://cloudflare-dns.com/dns-query",
+        "detour": "proxy"
+      },
+      {
+        "tag": "proxy-dns-backup1",
+        "address": "https://1.1.1.1/dns-query",
+        "detour": "proxy"
+      },
+      {
+        "tag": "proxy-dns-backup2",
+        "address": "https://8.8.8.8/dns-query",
+        "detour": "proxy"
+      },
+      {
+        "tag": "proxy-dns-google",
+        "address": "https://dns.google/dns-query",
+        "detour": "proxy"
+      }
+    ],
+
+    "rules": [
+      {
+        "rule_set": "ru-direct",
+        "server": "direct-dns"
+      },
+      {
+        "geosite": "ru",
+        "server": "direct-dns"
+      },
+      {
+        "geoip": "ru",
+        "server": "direct-dns"
+      },
+      {
+        "domain_keyword": ["yandex", "vk", "sber", "ozon", "wildberries", "tinkoff"],
+        "server": "direct-dns"
+      }
+    ],
+
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+
+    "final": "proxy-dns",
+    "strategy": "prefer_ipv4",
+    "disable_cache": false,
+    "independent_cache": true,
+    "client_subnet": "0.0.0.0/0"
+  }
+}
